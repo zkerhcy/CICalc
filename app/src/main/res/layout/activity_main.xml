@@ -1,16 +1,90 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                android:paddingBottom="@dimen/activity_vertical_margin"
-                tools:context=".MainActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity">
 
     <TextView
-        android:text="@string/hello_world"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:id="@+id/txtStartDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txtStartDate" />
 
-</RelativeLayout>
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/startDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:editable="false"
+        android:hint="@string/hintStartDate" />
+
+    <TextView
+        android:id="@+id/txtEndDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txtEndDate" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/endDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:editable="false"
+        android:hint="@string/hintEndDate" />
+
+    <TextView
+        android:id="@+id/txtAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txtAmount" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hintAmount"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/txtAnnualRate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txtAnnualRate" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/annualRate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hintAnnualRate"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/txtPunishDayRate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txtPunishDayRate" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/punishDayRate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hintPunishDayRate"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/txtCalcResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txtCalcResult"
+        android:visibility="invisible" />
+
+    <com.gc.materialdesign.views.ButtonRectangle
+        android:id="@+id/btnCalc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/txtCalc" />
+</LinearLayout>

@@ -1,18 +1,106 @@
 package com.hsbank.cicalc;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.gc.materialdesign.views.Button;
+
+import java.util.Calendar;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.OnFocusChange;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    @Bind(R.id.startDate) EditText startDate;
+    @Bind(R.id.endDate) EditText endDate;
+    @Bind(R.id.amount) EditText amount;
+    @Bind(R.id.annualRate) EditText annualRate;
+    @Bind(R.id.punishDayRate) EditText punishDayRate;
+    @Bind(R.id.txtCalcResult) TextView txtCalcResult;
+    @Bind(R.id.btnCalc) Button btnCalc;
+    String dateSet;
+    Calendar calendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+        initViews();
     }
+
+    private void initViews() {
+        btnCalc.setFocusable(true);
+        btnCalc.requestFocus();
+        btnCalc.setFocusableInTouchMode(true);
+        calendar = Calendar.getInstance();
+    }
+
+    @OnFocusChange(R.id.startDate)
+    void pickStartDate(boolean focused) {
+        if (focused) {
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                    MainActivity.this, DateSet, calendar
+                    .get(Calendar.YEAR), calendar
+                    .get(Calendar.MONTH), calendar
+                    .get(Calendar.DAY_OF_MONTH));
+            datePickerDialog.show();
+        }
+    }
+
+    @OnFocusChange(R.id.endDate)
+    void pickEndDate(boolean focused) {
+        if (focused) {
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                    MainActivity.this, DateSet, calendar
+                    .get(Calendar.YEAR), calendar
+                    .get(Calendar.MONTH), calendar
+                    .get(Calendar.DAY_OF_MONTH));
+            datePickerDialog.show();
+        }
+    }
+
+    @OnClick(R.id.btnCalc)
+    void calc() {
+
+    }
+
+    /**
+     * @description 日期设置匿名类
+     */
+    DatePickerDialog.OnDateSetListener DateSet = new DatePickerDialog.OnDateSetListener() {
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+            // 每次保存设置的日期
+            calendar.set(Calendar.YEAR, year);
+            calendar.set(Calendar.MONTH, monthOfYear);
+            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+            String str = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+            System.out.println("set is " + str);
+
+            if (startDate.isFocused()) {
+                startDate.setText(str);
+                btnCalc.requestFocus();
+            }
+            if (endDate.isFocused()) {
+                endDate.setText(str);
+                btnCalc.requestFocus();
+            }
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
