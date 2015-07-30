@@ -8,10 +8,13 @@ import android.view.MenuItem;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gc.materialdesign.views.Button;
+import com.hsbank.cicalc.utils.DateUtil;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -21,15 +24,17 @@ import butterknife.OnFocusChange;
 
 public class MainActivity extends ActionBarActivity {
 
-    @Bind(R.id.startDate) EditText startDate;
-    @Bind(R.id.endDate) EditText endDate;
+    @Bind(R.id.startDate) EditText strStartDate;
+    @Bind(R.id.oughtDate) EditText strOughtDate;
+    @Bind(R.id.actualDate)EditText strActualDate;
     @Bind(R.id.amount) EditText amount;
     @Bind(R.id.annualRate) EditText annualRate;
     @Bind(R.id.punishDayRate) EditText punishDayRate;
     @Bind(R.id.txtCalcResult) TextView txtCalcResult;
     @Bind(R.id.btnCalc) Button btnCalc;
-    String dateSet;
     Calendar calendar;
+    Date startDate,oughtDate,actualDate;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +63,20 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    @OnFocusChange(R.id.endDate)
-    void pickEndDate(boolean focused) {
+    @OnFocusChange(R.id.oughtDate)
+    void pickOughtDate(boolean focused) {
+        if (focused) {
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                    MainActivity.this, DateSet, calendar
+                    .get(Calendar.YEAR), calendar
+                    .get(Calendar.MONTH), calendar
+                    .get(Calendar.DAY_OF_MONTH));
+            datePickerDialog.show();
+        }
+    }
+
+    @OnFocusChange(R.id.actualDate)
+    void pickActualDate(boolean focused) {
         if (focused) {
             DatePickerDialog datePickerDialog = new DatePickerDialog(
                     MainActivity.this, DateSet, calendar
@@ -72,7 +89,7 @@ public class MainActivity extends ActionBarActivity {
 
     @OnClick(R.id.btnCalc)
     void calc() {
-
+        Toast.makeText(this, String.valueOf(DateUtil.getIntervalDays(startDate,oughtDate)), Toast.LENGTH_LONG).show();   
     }
 
     /**
@@ -91,12 +108,19 @@ public class MainActivity extends ActionBarActivity {
             String str = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
             System.out.println("set is " + str);
 
-            if (startDate.isFocused()) {
-                startDate.setText(str);
+            if (strStartDate.isFocused()) {
+                strStartDate.setText(str);
+                startDate = calendar.getTime();
                 btnCalc.requestFocus();
             }
-            if (endDate.isFocused()) {
-                endDate.setText(str);
+            if (strOughtDate.isFocused()) {
+                strOughtDate.setText(str);
+                oughtDate = calendar.getTime();
+                btnCalc.requestFocus();
+            }
+            if (strActualDate.isFocused()) {
+                strActualDate.setText(str);
+                actualDate = calendar.getTime();
                 btnCalc.requestFocus();
             }
         }

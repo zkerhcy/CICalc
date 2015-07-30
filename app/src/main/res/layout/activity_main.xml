@@ -23,17 +23,30 @@
         android:hint="@string/hintStartDate" />
 
     <TextView
-        android:id="@+id/txtEndDate"
+        android:id="@+id/txtOughtDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txtEndDate" />
+        android:text="@string/txtOughtDate" />
 
     <com.rengwuxian.materialedittext.MaterialEditText
-        android:id="@+id/endDate"
+        android:id="@+id/oughtDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:editable="false"
-        android:hint="@string/hintEndDate" />
+        android:hint="@string/hintOughtDate" />
+
+    <TextView
+        android:id="@+id/txtActualDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txtActualDate" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/actualDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:editable="false"
+        android:hint="@string/hintActualDate" />
 
     <TextView
         android:id="@+id/txtAmount"
@@ -65,14 +78,16 @@
         android:id="@+id/txtPunishDayRate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txtPunishDayRate" />
+        android:text="@string/txtPunishDayRate"
+        android:visibility="gone"/>
 
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/punishDayRate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hintPunishDayRate"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/txtCalcResult"
@@ -87,4 +102,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/txtCalc" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/remark"/>
 </LinearLayout>
