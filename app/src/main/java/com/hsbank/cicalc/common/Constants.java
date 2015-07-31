@@ -7,5 +7,5 @@ public class Constants {
     /**
      * 年利率(%)
      */
-    public static final double APR = 7.08 / 100;
+    public static final double APR = 7.08;
 }

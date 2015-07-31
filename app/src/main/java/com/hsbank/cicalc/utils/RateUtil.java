@@ -18,7 +18,7 @@ public class RateUtil {
      * @param loanAmount 借款金额
      * @param startDate  借款日期
      * @param actualDate 实际还款日期
-     * @param apr        年利率
+     * @param apr        年利率(%)
      * @return
      */
     public static Double normalInterests(Double loanAmount, Date startDate, Date actualDate, double apr) {
@@ -26,7 +26,7 @@ public class RateUtil {
         double interests = 0.00;
         try {
             days = DateUtils.getIntervalDays(startDate, actualDate) + 1;
-            interests = loanAmount * days * (apr / 360);//应还利息=借款金额×天数×正常日利率
+            interests = loanAmount * days * ((apr / 100) / 360);//应还利息=借款金额×天数×正常日利率
         } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, "Calc normal interests error" + e);
@@ -41,13 +41,13 @@ public class RateUtil {
      * @param startDate  借款日期
      * @param oughtDate  应还款日期
      * @param actualDate 实际还款日期
-     * @param apr        年利率
+     * @param apr        年利率(%)
      * @return
      */
     public static Double overdueInterests(Double loanAmount, Date startDate, Date oughtDate, Date actualDate, Double apr) {
         int overdueDays;//逾期天数
         double interests, overdueInterests = loanAmount;
-        double pdr = 1.5 * apr / 360;//罚息日利率
+        double pdr = 1.5 * (apr / 100) / 360;//罚息日利率
         overdueDays = DateUtils.getIntervalDays(oughtDate, actualDate);
         interests = normalInterests(loanAmount, startDate, oughtDate, apr); //正常利息部分
         for (int i = 0; i < overdueDays; i++) {
