@@ -1,4 +1,4 @@
-package com.hsbank.cicalc;
+package com.hsbank.cicalc.ui;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.gc.materialdesign.views.Button;
+import com.hsbank.cicalc.R;
 import com.hsbank.cicalc.common.Constants;
 import com.hsbank.cicalc.utils.AppUtils;
 import com.hsbank.cicalc.utils.RateUtil;
