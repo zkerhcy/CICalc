@@ -3,6 +3,11 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">关于</string>
+    <string name="str_app_version">版本:%1$s</string>
+    <string name="str_tech_support">技术支持:czhao5956@gmail.com</string>
+
+    <string name="str_confirm">确定</string>
+    <string name="str_cancel">取消</string>
 
     <string name="txtStartDate">借款开始日期：</string>
     <string name="hintStartDate">请选择借款开始日期</string>
@@ -17,6 +22,7 @@
     <string name="txtPunishDayRate">罚息日利率(%)：</string>
     <string name="hintPunishDayRate">请输入罚息日利率</string>
     <string name="txtCalc">计算</string>
-    <string name="txtCalcResult">计算结果：%1$.2f</string>
+    <string name="calcResult">计算结果</string>
+    <string name="txtCalcResult">总利息：%1$.2f元</string>
     <string name="remark">注：日利率=年利率/360，罚息日利率=1.5*年利率/360，罚息计复利。</string>
 </resources>

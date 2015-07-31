@@ -59,7 +59,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hintAmount"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        android:maxLength="10"/>
 
     <TextView
         android:id="@+id/txtAnnualRate"
@@ -72,7 +73,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hintAnnualRate"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        android:maxLength="6"/>
 
     <TextView
         android:id="@+id/txtPunishDayRate"
@@ -105,5 +107,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/remark"/>
+        android:text="@string/remark"
+        android:textSize="12dp"/>
 </LinearLayout>

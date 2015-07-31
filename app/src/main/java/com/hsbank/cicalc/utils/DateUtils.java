@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * Created by chenzhao on 2015/7/30.
  */
-public class DateUtil {
+public class DateUtils {
     private static final ThreadLocal<SimpleDateFormat> threadLocal = new ThreadLocal<>();
 
     private static final Object object = new Object();
@@ -677,8 +677,8 @@ public class DateUtil {
      */
     public static int getIntervalDays(Date date, Date otherDate) {
         int num = -1;
-        Date dateTmp = DateUtil.StringToDate(DateUtil.getDate(date), DateStyle.YYYY_MM_DD);
-        Date otherDateTmp = DateUtil.StringToDate(DateUtil.getDate(otherDate), DateStyle.YYYY_MM_DD);
+        Date dateTmp = DateUtils.StringToDate(DateUtils.getDate(date), DateStyle.YYYY_MM_DD);
+        Date otherDateTmp = DateUtils.StringToDate(DateUtils.getDate(otherDate), DateStyle.YYYY_MM_DD);
         if (dateTmp != null && otherDateTmp != null) {
             long time = Math.abs(dateTmp.getTime() - otherDateTmp.getTime());
             num = (int) (time / (24 * 60 * 60 * 1000));

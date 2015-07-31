@@ -1,0 +1,12 @@
+<resources>
+    <string name="msg_start_date_empty">请选择借款开始日期</string>
+    <string name="msg_ought_date_empty">请选择应还息日期</string>
+    <string name="msg_actual_date_empty">请选择实际还息日期</string>
+    <string name="msg_ought_less_than_start">应还息日期早于借款开始日期</string>
+    <string name="msg_actual_less_than_start">实际还息日期早于借款开始日期</string>
+
+    <string name="msg_loan_amount_empty">请输入借款金额</string>
+    <string name="msg_loan_amount_error">借款金额须大于0</string>
+    <string name="msg_annual_rate_empty">请输入年利率</string>
+
+</resources>
