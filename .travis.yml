@@ -45,4 +45,4 @@ android:
 #jdk: oraclejdk7
 
 script:
-  - ./gradlew clean build ckeck
+  - ./gradlew clean build
