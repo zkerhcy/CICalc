@@ -20,9 +20,9 @@ android:
   components:
     # Uncomment the lines below if you want to
     # use the latest revision of Android SDK Tools
-    - tools # to get the new `repository-11.xml`
-    - platform-tools
-    - tools # to install Android SDK tools 25.1.x
+    # - tools # to get the new `repository-11.xml`
+    # - platform-tools
+    # - tools # to install Android SDK tools 25.1.x
 
     # The BuildTools version used by your project
     - build-tools-$ANDROID_BUILD_TOOLS_VERSION
