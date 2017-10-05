@@ -1,7 +1,7 @@
 package com.hsbank.cicalc.ui;
 
-import android.app.DatePickerDialog;
 import android.content.Context;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
@@ -18,6 +18,7 @@ import com.hsbank.cicalc.common.Constants;
 import com.hsbank.cicalc.utils.AppUtils;
 import com.hsbank.cicalc.utils.RateUtil;
 import com.hsbank.cicalc.utils.T;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -55,6 +56,22 @@ public class MainActivity extends ActionBarActivity {
         ButterKnife.bind(this);
         initViews();
         initValues();
+
+//        MobclickAgent.updateOnlineConfig(context_);
+//        /** 设置是否对日志信息进行加密, 默认false(不加密). */
+//        AnalyticsConfig.enableEncrypt(true);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     private void initViews() {
@@ -71,11 +88,7 @@ public class MainActivity extends ActionBarActivity {
     @OnFocusChange(R.id.startDate)
     void pickStartDate(boolean focused) {
         if (focused) {
-            DatePickerDialog datePickerDialog = new DatePickerDialog(
-                    MainActivity.this, DateSet, calendar
-                    .get(Calendar.YEAR), calendar
-                    .get(Calendar.MONTH), calendar
-                    .get(Calendar.DAY_OF_MONTH));
+            DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity.this, DateSet, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
             datePickerDialog.show();
         }
     }
@@ -83,11 +96,7 @@ public class MainActivity extends ActionBarActivity {
     @OnFocusChange(R.id.oughtDate)
     void pickOughtDate(boolean focused) {
         if (focused) {
-            DatePickerDialog datePickerDialog = new DatePickerDialog(
-                    MainActivity.this, DateSet, calendar
-                    .get(Calendar.YEAR), calendar
-                    .get(Calendar.MONTH), calendar
-                    .get(Calendar.DAY_OF_MONTH));
+            DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity.this, DateSet, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
             datePickerDialog.show();
         }
     }
@@ -95,11 +104,7 @@ public class MainActivity extends ActionBarActivity {
     @OnFocusChange(R.id.actualDate)
     void pickActualDate(boolean focused) {
         if (focused) {
-            DatePickerDialog datePickerDialog = new DatePickerDialog(
-                    MainActivity.this, DateSet, calendar
-                    .get(Calendar.YEAR), calendar
-                    .get(Calendar.MONTH), calendar
-                    .get(Calendar.DAY_OF_MONTH));
+            DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity.this, DateSet, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
             datePickerDialog.show();
         }
     }
@@ -170,8 +175,7 @@ public class MainActivity extends ActionBarActivity {
     DatePickerDialog.OnDateSetListener DateSet = new DatePickerDialog.OnDateSetListener() {
 
         @Override
-        public void onDateSet(DatePicker view, int year, int monthOfYear,
-                              int dayOfMonth) {
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             // 每次保存设置的日期
             calendar.set(year, monthOfYear, dayOfMonth, 0, 0, 0);
 

@@ -5,14 +5,14 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "com.hsbank.cicalc"
-        minSdkVersion 15
+        applicationId APPLICATION_ID
+        minSdkVersion 9
         targetSdkVersion 22
-        versionCode 1
-        versionName "1.2"
+        versionCode Integer.parseInt(VERSION_CODE)
+        versionName VERSION_NAME
     }
 
-    /**GBK编码*/
+    /**utf-8编码*/
     compileOptions.encoding = "utf-8"
 
     /**java版本**/
@@ -33,32 +33,57 @@ android {
         }
 
         release {
-            storeFile file("cicalc.jks")
-            storePassword "cicalc"
-            keyAlias "cicalc"
-            keyPassword "cicalc"
+            storeFile file(STORE_FILE)
+            storePassword STORE_PASSWORD
+            keyAlias KEY_ALIAS
+            keyPassword KEY_PASSWORD
+
         }
     }
 
     buildTypes {
-        release {
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "boolean", "LOG_DEBUG", "false"
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            versionNameSuffix "-debug"
             minifyEnabled false
-            shrinkResources true
-            zipAlignEnabled true
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.debug
+        }
+        release {
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            minifyEnabled false//混淆
+            zipAlignEnabled true//对齐
+            shrinkResources true//去除无用src
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
             applicationVariants.all { variant ->
                 variant.outputs.each { output ->
                     def outputFile = output.outputFile
                     if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                        // 输出apk名称为appName_v1.0_2015-01-15_storeName.apk
-                        def fileName = "calc_v${defaultConfig.versionName}_${releaseTime()}.apk"
+                        // 输出apk名称为appName_{version}_{date}_storeName.apk
+                        def fileName = "calc_v${defaultConfig.versionName}_${releaseTime()}_release_${variant.productFlavors[0].name}.apk"
                         output.outputFile = new File(outputFile.parent, fileName)
                     }
                 }
             }
         }
+    }
+
+    /** 友盟多渠道打包*/
+    productFlavors {
+        googlePlay {}
+        wandoujia {}
+//        _360 {}
+//        baidu {}
+        xiaomi {}
+        tencent {}
+//        taobao {}
+//        uc {}
+    }
+
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
     }
 }
 
@@ -68,6 +93,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.github.navasmdc:MaterialDesign:1.5@aar'
     compile 'com.rengwuxian.materialedittext:library:2.1.4'
+    compile 'com.umeng.analytics:analytics:latest.integration'
 
 }
 
