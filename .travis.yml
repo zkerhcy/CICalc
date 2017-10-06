@@ -69,7 +69,8 @@ before_script:
 #  - ./gradlew connectedAndroidTest
 script:
 #  - ./gradlew clean check connectedCheck -x library:signArchives -PdisablePreDex
-  - ./gradlew clean assembleDebug -x library:signArchives -PdisablePreDex
+#  - ./gradlew clean assembleDebug -x library:signArchives -PdisablePreDex
+  - ./gradlew clean assembleDebug -PdisablePreDex
 
 #language: android
 #android:
