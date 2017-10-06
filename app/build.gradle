@@ -55,7 +55,7 @@ android {
             minifyEnabled false//混淆
             zipAlignEnabled true//对齐
             shrinkResources true//去除无用src
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
             applicationVariants.all { variant ->
                 variant.outputs.each { output ->
